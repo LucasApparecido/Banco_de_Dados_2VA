@@ -1,0 +1,31 @@
+O cliente solicitou que fosse criado um sistema para controlar seu hospital, durante a conversa levantou-se que atualmente o hospital mantem todo seu controle por meio de fichas que devem ser informatizadas, as fichas atuais são: pacientes, planos de saúde(convênios), quartos, médicos, consulta, internação, exames.
+
+Cada paciente para fazer uma consulta deve possuir um convênio(particular também é um convênio) e um médico, cada consulta só é feita em um único convênio. Quando a consulta é realizada fica na ficha do paciente o registrado do histórico do paciente com a data da consulta, o médico que atendeu o paciente e as anotações do médico relacionada a consulta, caso seja realizado a solicitação de algum exame também fica registrado.
+
+Cada médico pode atender varias especialidades, e cada consulta é realizada em uma única especialidade.
+
+Quando ocorre uma internação é criado um prontuário de internação, onde fica registrado o quarto onde o paciente foi internado o médico que solicitou a internação, data da internação e data da alta, e logo abaixo no prontuário fica um histórico do que acontece com o paciente durante a internação, as informações que ficam no histórico são os exames realizados (com o médico que solicitou o exame, a data da solicitação), o resultado do exame(descrição do resultado, data do resultado), e os medicamentos ministrados com a data e hora em que o medicamento foi ministrado.
+
+Algumas observações:
+
+Todas as informações citadas acima foram minimas, devendo ser acrescentado os atributos que vocês vejam como indispensáveis.
+
+Existe relacionamento ternário.
+
+Existe agregação/Entidade Associativa.
+
+As chaves primárias devem ser campos numéricos. 
+
+Deverá ser feito o MER e o MR do sistema descrito acima,
+
+Deverá ser criado a DDL para o PostgreSQL contendo as chaves primárias e estrangeiras.(arquivo: cria_base.sql)
+
+Deverá ser criado a DML de inserção de dados das tabelas geradas no MR, cada tabela deverá ter pelo menos 10 linhas sendo que deve ter pelo menos 3 tabelas com 20 linhas pelo menos, sendo essas 3 tabelas obrigatoriamente fruto de relacionamentos. Deverá ser Gerado dois arquivos de inserção com duas massa de testes. (arquivo: dml_massa1.sql e dml_massa2.sql)
+
+Nas perguntas abaixo todas devem retornar pelo menos uma tupla a não ser que seja explicitados o contrário.
+
+Dica Leiam todas as perguntas antes de começar a modelagem.
+
+As Consultas abaixo devem ser gravadas todas em um arquivo .sql.(aquivo: dml_resposta.sql , as perguntas devem ser colocadas como comentário antes da sql de resposta)
+
+Devera ser gerado um arquivo no formato doc,odt ou pdf com a pergunta, a sql de resposta e as tuplas resultantes da execução da sql, isso por questão, sendo que todas as questões estarão no mesmo arquivo.(arquivo: documentacao_resposta.(dot|odt|pdf).

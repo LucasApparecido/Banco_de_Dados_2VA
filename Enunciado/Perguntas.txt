@@ -1,0 +1,82 @@
+1. Listar os dados de todos os Pacientes cadastrados.
+
+
+2. Listar os dados de todos os Médicos cadastrados.
+
+
+3. Listar os dados de todas as consultas realizadas no hospital.(pelo menos o nome do Paciente, Médico, data da consulta e convênio)
+
+
+4. Listar os dados de todas as internações realizadas no hospital. ( pelo menos o nome do paciente, nome do médico que solicitou a internação, data da entrada e da saída, quarto que o paciente ficou internado)
+
+
+5. Listar todas as internações e os histórico das internações(apenas os exames).(Dados da Internação conforme questão 4, e os exames solicitados caso existam e seu resultado caso existam
+
+
+6. Listar todas as internações e os histórico das internações(apenas os medicamentos ministrados).(Dados da Internação conforme questão 4, e os medicamentos ministrados com a data e hora)
+
+
+7. Fazer uma consulta com a estatística de atendimento em consulta realizado pelos médicos. Ou seja a quantidade de pacientes atendido pelos médicos em um intervalo de data .(o intervalo será definido conforme a sua massa de dados).
+
+
+8. Fazer uma consulta com a estatística de atendimento em consultas realizado pelos médicos com detalhamento por convênio, ou seja listar a quantidade de atendimento realizados pelo médico por convênio.
+
+
+9. Listar os Paciente que nunca fizeram exames.
+
+
+10. Qual o paciente que mais fez consultas.
+
+
+11. Qual o paciente que mais fez exames
+
+
+12. Qual o paciente que menos fez exames.
+
+
+13. Qual o médico mais produtivo(que mais atendeu consultas).
+
+
+14. Qual o médico que menos solicita exames.
+
+
+15. Qual o médico que mais solicita exames.
+
+
+16. Qual exame nunca foi solicitado.
+
+
+17. Qual o exame mais solicitado.
+
+
+18. Fazer uma consulta com a estatística de pacientes por sexo, ou seja a quantidade de pacientes por sexo.
+
+
+19. Fazer uma consulta com a estatística de pacientes por cidade.
+
+
+20. Fazer uma consulta com a estatística de exames solicitados, ou seja a quantidade de solicitações por exames cadastrados.(lembrando que exames podem ser solicitados em consultas ou em prontuários de internação).
+
+
+21. Listar os médicos da especialidade que teve maior número de consulta
+
+
+22. Fazer uma consulta com a estatística de médicos por especialidade, ou seja a quantidade de médicos por especialidade.
+
+
+23. Fazer uma consulta com a estatística de quantos exames, internações e consultas realizadas por médico, ou seja listar: médico, totalexames, totalinternacoes, totalconsultas.
+
+
+24. Listar os pacientes que já realizaram consultas, exames por consulta e por internação, internação e receberam medicamento em internação.
+
+
+25. Listar os médicos que já realizaram consultas, solicitaram exames em consultas, e nunca solicitaram exames em internação
+
+
+26. Listar os médicos que menos solicitaram exames.
+
+
+27. Faça vocês do grupo uma pergunta que necessite utilizar funções agregadas e subconsulta para obter a resposta.
+
+
+28. Fazer uma consulta que liste o faturamento por mês separado por consulta, exame e internações. Formato de saída: Mês, valorTotalConsultas, ValorTotalExames, ValorTotalInternações.
