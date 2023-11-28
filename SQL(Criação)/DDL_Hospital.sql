@@ -165,7 +165,7 @@ create table internacao_medic (
 	internacao_id int not null,
 	medicamento_id int not null,
 	id int not null,
-	data_aplicacao date not null,
+	data_aplicacao datetime not null,
 	primary key(id),
 	foreign key(internacao_id)
 	references internacao(id),
