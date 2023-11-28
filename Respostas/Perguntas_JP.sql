@@ -1,9 +1,28 @@
 --2. Listar os dados de todos os Médicos cadastrados.
-
+select 
+    m.crm as crm,
+    m.nome as nome
+from medico m;
 --4. Listar os dados de todas as internações realizadas no hospital. ( pelo menos o nome do paciente, nome do médico que solicitou a internação, data da entrada e da saída, quarto que o paciente ficou internado)
-
+select 
+    p.nome as nome_paciente,
+    m.nome as nome_medico,
+    i.data_internacao as data_internacao,
+    i.data_alta as data_alta,
+    q.numero as quarto_numero
+from internacao i, paciente p, medico m, quarto q
+where p.cpf = i.paciente_cpf and m.crm = i.medico_crm and q.numero = i.quarto_numero;
 --6. Listar todas as internações e os histórico das internações(apenas os medicamentos ministrados).(Dados da Internação conforme questão 4, e os medicamentos ministrados com a data e hora)
-
+select 
+    p.nome as nome_paciente,
+    m.nome as nome_medico,
+    i.data_internacao as data_internacao,
+    i.data_alta as data_alta,
+    q.numero as quarto_numero,
+    med.nome as nome_medicamento,
+    im.data_aplicacao as data_aplicacao
+from internacao i, paciente p, medico m, quarto q, internacao_medic im, medicamento med
+where p.cpf = i.paciente_cpf and m.crm = i.medico_crm and q.numero = i.quarto_numero and med.id = im.medicamento_id;
 --8. Fazer uma consulta com a estatística de atendimento em consultas realizado pelos médicos com detalhamento por convênio, ou seja listar a quantidade de atendimento realizados pelo médico por convênio.
 
 --10. Qual o paciente que mais fez consultas.
