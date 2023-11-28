@@ -79,7 +79,7 @@ create table consulta (
 	foreign key(especialidade_id, convenio_id, medico_crm)
 	references convenio_med(especialidade_id, convenio_id, medico_crm),
 	foreign key(paciente_cpf, convenio_id)
-	references paciente(paciente_cpf, convenio_id)
+	references convenio_pac(paciente_cpf, convenio_id)
 );
 
 create table exame (
@@ -165,7 +165,7 @@ create table internacao_medic (
 	internacao_id int not null,
 	medicamento_id int not null,
 	id int not null,
-	data_aplicacao datetime not null,
+	data_aplicacao timestamp not null,
 	primary key(id),
 	foreign key(internacao_id)
 	references internacao(id),
@@ -174,20 +174,3 @@ create table internacao_medic (
 );
 
 
-drop table internacao_medic;
-drop table internacao_exa;
-drop table consulta_medic;
-drop table consulta_exa;
-drop table internacao;
-drop table quarto;
-drop table medicamento;
-drop table exame;
-drop table consulta;
-drop table convenio_med;
-drop table convenio_pac;
-drop table medico_esp;
-drop table medico;
-drop table especialidade;
-drop table endereco;
-drop table paciente;
-drop table convenio;
