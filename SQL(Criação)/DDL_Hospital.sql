@@ -65,10 +65,8 @@ create table convenio_med (
 	primary key(convenio_id, especialidade_id, medico_crm),
 	foreign key(convenio_id)
 	references convenio(id),
-	foreign key(especialidade_id)
-	references especialidade(id),
-	foreign key(medico_crm)
-	references medico(crm)
+	foreign key(especialidade_id, medico_crm)
+	references medico_esp(especialidade_id, medico_crm)
 );
 
 create table consulta (
@@ -78,14 +76,10 @@ create table consulta (
 	paciente_cpf bigint not null,
 	medico_crm int not null,
 	primary key(data_consulta, especialidade_id, convenio_id, paciente_cpf, medico_crm),
-	foreign key(especialidade_id)
-	references especialidade(id),
-	foreign key(convenio_id)
-	references convenio(id),
-	foreign key(paciente_cpf)
-	references paciente(cpf),
-	foreign key(medico_crm)
-	references medico(crm)
+	foreign key(especialidade_id, convenio_id, medico_crm)
+	references convenio_med(especialidade_id, convenio_id, medico_crm),
+	foreign key(paciente_cpf, convenio_id)
+	references paciente(paciente_cpf, convenio_id)
 );
 
 create table exame (
@@ -116,16 +110,8 @@ create table internacao (
 	medico_crm int not null,
 	quarto_numero int not null,
 	primary key(id),
-	foreign key(data_consulta)
-	references consulta(data_consulta),
-	foreign key(especialidade_id)
-	references especialidade(id),
-	foreign key(convenio_id)
-	references convenio(id),
-	foreign key(paciente_cpf)
-	references paciente(cpf),
-	foreign key(medico_crm)
-	references medico(crm),
+	foreign key(data_consulta, especialidade_id, convenio_id, paciente_cpf, medico_crm)
+	references consulta(data_consulta, especialidade_id, convenio_id, paciente_cpf, medico_crm),
 	foreign key(quarto_numero)
 	references quarto(numero)
 );
@@ -141,16 +127,8 @@ create table consulta_exa (
 	data_agenda date not null,
 	data_realizacao date null,
 	primary key(id),
-	foreign key(data_consulta)
-	references consulta(data_consulta),
-	foreign key(paciente_cpf)
-	references paciente(cpf),
-	foreign key(convenio_id)
-	references convenio(id),
-	foreign key(especialidade_id)
-	references especialidade(id),
-	foreign key(medico_crm)
-	references medico(crm),
+	foreign key(data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm)
+	references consulta(data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm),
 	foreign key(exame_id)
 	references exame(id)
 );
@@ -164,16 +142,8 @@ create table consulta_medic (
 	medicamento_id int not null,
 	data_prescricao date not null,
 	primary key(data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm, medicamento_id),
-	foreign key(data_consulta)
-	references consulta(data_consulta),
-	foreign key(paciente_cpf)
-	references paciente(cpf),
-	foreign key(convenio_id)
-	references convenio(id),
-	foreign key(especialidade_id)
-	references especialidade(id),
-	foreign key(medico_crm)
-	references medico(crm),
+	foreign key(data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm)
+	references consulta(data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm),
 	foreign key(medicamento_id)
 	references medicamento(id)
 );
