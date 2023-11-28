@@ -70,7 +70,7 @@ create table convenio_med (
 );
 
 create table consulta (
-	data_consulta date not null,
+	data_consulta timestamp not null,
 	especialidade_id int not null,
 	convenio_id int not null,
 	paciente_cpf bigint not null,
@@ -101,9 +101,9 @@ create table quarto (
 
 create table internacao (
 	id int not null,
-	data_internacao date not null,
-	data_alta date null,
-	data_consulta date not null,
+	data_internacao timestamp not null,
+	data_alta timestamp null,
+	data_consulta timestamp not null,
 	especialidade_id int not null,
 	convenio_id int not null,
 	paciente_cpf bigint not null,
@@ -116,16 +116,19 @@ create table internacao (
 	references quarto(numero)
 );
 
+create index idx_internacao 
+on internacao(data_consulta, especialidade_id, convenio_id, paciente_cpf, medico_crm);
+
 create table consulta_exa (
-	data_consulta date not null,
+	data_consulta timestamp not null,
 	paciente_cpf bigint not null,
 	convenio_id int not null,
 	especialidade_id int not null,
 	medico_crm int not null,
 	exame_id int not null,
 	id int not null,
-	data_agenda date not null,
-	data_realizacao date null,
+	data_agenda timestamp not null,
+	data_realizacao timestamp null,
 	primary key(id),
 	foreign key(data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm)
 	references consulta(data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm),
@@ -134,13 +137,13 @@ create table consulta_exa (
 );
 
 create table consulta_medic (
-	data_consulta date not null,
+	data_consulta timestamp not null,
 	paciente_cpf bigint not null,
 	convenio_id int not null,
 	especialidade_id int not null,
 	medico_crm int not null,
 	medicamento_id int not null,
-	data_prescricao date not null,
+	data_prescricao timestamp not null,
 	primary key(data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm, medicamento_id),
 	foreign key(data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm)
 	references consulta(data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm),
@@ -152,8 +155,8 @@ create table internacao_exa (
 	internacao_id int not null,
 	exame_id int not null,
 	id int not null,
-	data_agenda date not null,
-	data_realizacao date null,
+	data_agenda timestamp not null,
+	data_realizacao timestamp null,
 	primary key(id),
 	foreign key(internacao_id)
 	references internacao(id),
