@@ -6,8 +6,7 @@ create table convenio (
 );
 
 create table paciente (
-	cpf bigint
-	0 not null,
+	cpf bigint not null,
 	nome varchar(50) not null,
 	data_nascimento date not null,
 	sexo char(1) not null,
