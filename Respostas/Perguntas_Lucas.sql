@@ -49,7 +49,7 @@ from
     medico m,
     quarto q,
     internacao_exa ie,
-    exame e,
+    exame e
 where
     p.cpf = i.paciente_cpf
     and m.crm = i.medico_crm
@@ -99,7 +99,7 @@ limit
     1;
 
 --13. Qual o médico mais produtivo(que mais atendeu consultas).
-select 
+select
     m.nome as nome_medico,
     count(c.medico_crm) as quantidade_consultas
 from
@@ -113,9 +113,103 @@ limit
     1;
 
 --15. Qual o médico que mais solicita exames.
+select
+    m.nome as nome_medico,
+    count(ce.id) + count(ie.id) as quantidade_exames
+from
+    medico m
+    left join consulta_exa ce on m.crm = ce.medico_crm
+    left join internacao i on m.crm = i.medico_crm
+    left join internacao_exa ie on i.id = ie.internacao_id
+group by
+    m.nome
+order by
+    quantidade_exames desc
+limit
+    1;
+
 --17. Qual o exame mais solicitado.
+select
+    e.nome as nome_exame,
+    count(ce.exame_id) + count(ie.exame_id) as quantidade_exames
+from
+    consulta_exa ce
+    left join exame e on ce.exame_id = e.id
+    left join internacao_exa ie on ie.exame_id = e.id
+group by
+    e.nome
+order by
+    quantidade_exames desc
+limit
+    1;
+
 --19. Fazer uma consulta com a estatística de pacientes por cidade.
---21. Listar os médicos da especialidade que teve maior número de consulta
+select
+    e.cidade,
+    count(p.cpf) as quantidade_pacientes
+from
+    paciente p
+    join endereco e on p.cpf = e.paciente_cpf
+group by
+    e.cidade;
+
+--21. Listar os médicos da especialidade que teve maior número de consulta 
+select
+    m.nome as nome_medico,
+	e.nome as nome_especialidade,
+    count(c.medico_crm) as quantidade_consultas
+from
+    consulta c
+    join medico m on c.medico_crm = m.crm
+    join medico_esp me on m.crm = me.medico_crm
+    join especialidade e on me.especialidade_id = e.id
+where
+    e.id 
+group by
+    m.nome,
+	e.nome
+order by
+    quantidade_consultas DESC;
+
 --23. Fazer uma consulta com a estatística de quantos exames, internações e consultas realizadas por médico, ou seja listar: médico, totalexames, totalinternacoes, totalconsultas.
+select
+    m.nome as nome_medico,
+    count(ce.exame_id) + count(ie.exame_id) as total_exames,
+    count(i.id) as total_internacoes,
+    count(c.medico_crm) as total_consultas
+from
+    medico m
+    left join consulta_exa ce on m.crm = ce.medico_crm
+    left join internacao i on m.crm = i.medico_crm
+    left join internacao_exa ie on i.id = ie.internacao_id
+    left join consulta c on m.crm = c.medico_crm
+group by
+    m.nome;
+
 --25. Listar os médicos que já realizaram consultas, solicitaram exames em consultas, e nunca solicitaram exames em internação
+select
+    m.nome as nome_medico
+from
+    medico m
+    join consulta c on m.crm = c.medico_crm
+    join consulta_exa ce on c.data_consulta = ce.data_consulta
+    left join internacao i on m.crm = i.medico_crm
+    left join internacao_exa ie on i.id = ie.internacao_id
+where
+    ie.internacao_id is null;
+
 --27. Faça vocês do grupo uma pergunta que necessite utilizar funções agregadas e subconsulta para obter a resposta.
+--Quantos pacientes foram atendidos por cada médico em uma especialidade específica?
+select
+    m.nome as nome_medico,
+    e.nome as especialidade,
+    count(distinct c.paciente_cpf) as quantidade_pacientes
+from
+    medico m
+    join medico_esp me on m.crm = me.medico_crm
+    join especialidade e on me.especialidade_id = e.id
+    left join consulta c on m.crm = c.medico_crm
+group by
+    m.nome,
+    e.nome;
+

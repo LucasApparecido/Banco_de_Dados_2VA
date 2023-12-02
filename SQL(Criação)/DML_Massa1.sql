@@ -12,7 +12,7 @@ INSERT INTO convenio (id, nome) VALUES
 (10, 'Convenio10');
 
 -- Inserindo 10 linhas na tabela 'paciente'
-INSERT INTO paciente (cpf, nome, data_nascimento, convenio_id) VALUES
+INSERT INTO paciente (cpf, nome, data_nascimento, sexo, convenio_id) VALUES
 (12345678901, 'Paciente1', '1990-01-01', 'H', 1),
 (23456789012, 'Paciente2', '1985-02-15', 'M', 2),
 (34567890123, 'Paciente3', '1992-05-20', 'H', 3),
@@ -177,8 +177,8 @@ INSERT INTO consulta_exa (data_consulta, paciente_cpf, convenio_id, especialidad
 ('2023-01-06 12:00:00', 67890123456, 6, 6, 665, 6, 6, '2023-01-07 12:00:00', '2023-01-08 12:00:00', 'Morreu'),
 ('2023-01-07 12:00:00', 78901234567, 7, 7, 777, 7, 7, '2023-01-08 12:00:00', '2023-01-09 12:00:00', 'Viveu'),
 ('2023-01-08 12:00:00', 89012345678, 8, 8, 888, 8, 8, '2023-01-09 12:00:00', '2023-01-10 12:00:00', null),
-('2023-01-09 12:00:00', 90123456789, 9, 9, 999, 9, 9, '2023-01-10 12:00:00', '2023-01-11 12:00:00', null),
-('2023-01-10 12:00:00', 12345098765, 10, 10, 1000, 10, 10, '2023-01-11 12:00:00', '2023-01-12 12:00:00', null);
+('2023-01-09 12:00:00', 90123456789, 9, 9, 999, 9, 9, '2023-01-10 12:00:00', null, null),
+('2023-01-10 12:00:00', 12345098765, 10, 10, 1000, 10, 10, '2023-01-11 12:00:00', null, null);
 
 -- Inserindo 10 linhas na tabela 'consulta_medic'
 INSERT INTO consulta_medic (data_consulta, paciente_cpf, convenio_id, especialidade_id, medico_crm, medicamento_id, data_prescricao) VALUES
@@ -201,8 +201,8 @@ INSERT INTO internacao_exa (internacao_id, exame_id, id, data_agenda, data_reali
 (4, 4, 4, '2023-01-04 12:00:00', '2023-01-05 12:00:00', 'Talvez viva'),
 (5, 5, 5, '2023-01-05 12:00:00', '2023-01-06 12:00:00', 'Tem 3 dias de vida'),
 (6, 6, 6, '2023-01-06 12:00:00', '2023-01-07 12:00:00', 'Morreu'),
-(7, 7, 7, '2023-01-07 12:00:00', '2023-01-08 12:00:00', null),
-(8, 8, 8, '2023-01-08 12:00:00', '2023-01-09 12:00:00', null),
+(7, 7, 7, '2023-01-07 12:00:00', null, null),
+(8, 8, 8, '2023-01-08 12:00:00', null, null),
 (9, 9, 9, '2023-01-09 12:00:00', '2023-01-10 12:00:00', 'Morreu'),
 (10, 10, 10, '2023-01-10 12:00:00', '2023-01-11 12:00:00', null);
 
