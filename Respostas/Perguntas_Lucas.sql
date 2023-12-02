@@ -156,18 +156,16 @@ group by
 --21. Listar os médicos da especialidade que teve maior número de consulta 
 select
     m.nome as nome_medico,
-	e.nome as nome_especialidade,
+    e.nome as nome_especialidade,
     count(c.medico_crm) as quantidade_consultas
 from
     consulta c
     join medico m on c.medico_crm = m.crm
     join medico_esp me on m.crm = me.medico_crm
     join especialidade e on me.especialidade_id = e.id
-where
-    e.id 
 group by
     m.nome,
-	e.nome
+    e.nome
 order by
     quantidade_consultas DESC;
 
@@ -191,25 +189,33 @@ select
     m.nome as nome_medico
 from
     medico m
-    join consulta c on m.crm = c.medico_crm
-    join consulta_exa ce on c.data_consulta = ce.data_consulta
+    left join consulta c on m.crm = c.medico_crm
+    left join consulta_exa ce on m.crm = ce.medico_crm
     left join internacao i on m.crm = i.medico_crm
     left join internacao_exa ie on i.id = ie.internacao_id
 where
-    ie.internacao_id is null;
+    c.medico_crm is not null
+    and ce.medico_crm is not null
+    and ie.internacao_id is null;
 
 --27. Faça vocês do grupo uma pergunta que necessite utilizar funções agregadas e subconsulta para obter a resposta.
---Quantos pacientes foram atendidos por cada médico em uma especialidade específica?
+--Qual é a média de consultas realizadas por paciente que possui internações registradas?
 select
-    m.nome as nome_medico,
-    e.nome as especialidade,
-    count(distinct c.paciente_cpf) as quantidade_pacientes
+    round(avg(total_consultas), 2) as media_consultas
 from
-    medico m
-    join medico_esp me on m.crm = me.medico_crm
-    join especialidade e on me.especialidade_id = e.id
-    left join consulta c on m.crm = c.medico_crm
-group by
-    m.nome,
-    e.nome;
-
+    (
+        select
+            paciente_cpf,
+            count(*) as total_consultas
+        from
+            consulta
+        where
+            paciente_cpf in (
+                select
+                    distinct paciente_cpf
+                from
+                    internacao
+            )
+        group by
+            paciente_cpf
+    ) as consultas_por_paciente;

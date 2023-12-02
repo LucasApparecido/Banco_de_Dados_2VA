@@ -83,6 +83,7 @@ create table consulta (
 create table exame (
 	id int not null,
 	nome varchar(50) not null,
+	valor float not null,
 	primary key(id)
 );
 
@@ -99,7 +100,6 @@ create table internacao (
 	data_internacao timestamp not null,
 	data_alta timestamp null,
 	data_consulta timestamp not null,
-	valor float not null,
 	especialidade_id int not null,
 	convenio_id int not null,
 	paciente_cpf bigint not null,
@@ -120,6 +120,14 @@ create table internacao (
 		medico_crm
 	),
 	foreign key(quarto_numero) references quarto(numero)
+);
+
+create index idx_internacao on internacao(
+	data_consulta,
+	especialidade_id,
+	convenio_id,
+	paciente_cpf,
+	medico_crm
 );
 
 create table consulta_exa (
